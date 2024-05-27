@@ -1,0 +1,23 @@
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f3f3f3;
+}
+
+mat-toolbar {
+  background-color: #000000;
+  color: white;
+
+  .content-toolbar {
+    height: 100%;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+

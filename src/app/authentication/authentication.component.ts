@@ -1,17 +1,16 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {StorageService} from "./authentication/services/storage.service";
-import {AuthService} from "./authentication/services/auth.service";
-import {EventBusService} from "./authentication/shared/event-bus.service";
-import {Router} from "@angular/router";
-import {AppService} from "./services/app-service";
+import {StorageService} from "./services/storage.service";
+import {AuthService} from "./services/auth.service";
+import {EventBusService} from "./shared/event-bus.service";
+import {AppService} from "../services/app-service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-authentication',
+  templateUrl: './authentication.component.html',
+  styleUrls: ['./authentication.component.css']
 })
-export class AppComponent implements OnInit{
+export class AuthenticationComponent implements OnInit{
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
@@ -20,15 +19,10 @@ export class AppComponent implements OnInit{
 
   eventBusSub?: Subscription;
 
-  booleanSubscription: Subscription | undefined;
-  booleanValue: boolean | undefined;
-
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
     private eventBusService: EventBusService,
-    private router: Router,
-    private appService: AppService
   ) {}
 
   ngOnInit(): void {
@@ -47,16 +41,6 @@ export class AppComponent implements OnInit{
     this.eventBusSub = this.eventBusService.on('logout', () => {
       this.logout();
     });
-
-    this.booleanSubscription = this.appService.onBooleanChange().subscribe(value => {
-      this.booleanValue = value;
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.booleanSubscription) {
-      this.booleanSubscription.unsubscribe();
-    }
   }
 
   logout(): void {
@@ -72,9 +56,5 @@ export class AppComponent implements OnInit{
       }
     });
   }
-
-  login() {
-      this.router.navigate(['../login']).then(r => console.log('_'));
-  }
-
 }
+
