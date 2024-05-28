@@ -1,31 +1,20 @@
 const express = require("express");
+const path = require("path");
 
-const bodyParser = require('body-parser');
-
+// Running PORT is set automatically by App Engine
+const port = process.env.PORT || 3000;
 const app = express();
 
-const port = process.env.PORT || 3000;
+const publicPath = path.join(__dirname, "/dist/front-end");
 
-const allowCors = (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+app.use(express.static(publicPath));
 
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials, X-Access-Token, X-Key");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS, PATCH");
-
-  res.header("Access-Control-Allow-Credentials", "true");
-
-  next();
-}
-
-app.use(allowCors);
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(__dirname + "/dist/ranqueamento-front"));
-
-app.get('*', (req, res) => {
-  res.sendFile(__dirname + "/dist/ranqueamento-front/index.html");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/dist/front-end/index.html"));
 });
 
-app.listen(port, async() => {
-  console.log(`API Gateway running in port ${port}!`)
+// app.listen(process.env.PORT || 8080);
+
+app.listen(port, () => {
+  console.log(`Server is up on ${port}`);
 });
