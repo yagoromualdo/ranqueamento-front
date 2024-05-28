@@ -1,3 +1,5 @@
+
+
 .title-page {
   height: 100px;
   display: flex;
@@ -5,6 +7,7 @@
   justify-content: center;
 
   h1 {
+
     font-size: 40px;
     font-weight: bold;
     margin: 0 10px 0 10px;
@@ -42,8 +45,69 @@
       font-size: 20px;
     }
   }
+
+  .disabled {
+    opacity: 0.5;
+  }
 }
 
-.disabled {
-  opacity: 0.5;
+.cards-topicos {
+  width: 100%;
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  .medalha {
+    height: 50px;
+    width: 50px;
+  }
+
+  .card-por-votacao{
+    padding: 0 15px 0 15px;
+    border-radius: 7px;
+    margin-bottom: 25px;
+    height: 100px;
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+
+    .item-card {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .item-card:nth-child(1n) {
+      width: 27%;
+    }
+
+    .item-card:nth-child(2n) {
+      width:65%;
+      justify-content: space-between;
+
+      div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        div {
+          margin-left: 12px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+      }
+    }
+
+    .item-card:nth-child(3n) {
+      width: 8%;
+    }
+
+  }
 }

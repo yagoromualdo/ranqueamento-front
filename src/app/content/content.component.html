@@ -1,11 +1,11 @@
-<div>
-  <div class="title-page">
-    <mat-icon>equalizer</mat-icon>
-    <h1>RANKING</h1>
-    <mat-icon>equalizer</mat-icon>
-  </div>
+<header class="title-page">
+  <mat-icon>equalizer</mat-icon>
+  <h1>RANKING</h1>
+  <mat-icon>equalizer</mat-icon>
+</header>
 
-  <div class="select-tipo-ranking">
+<div>
+  <section class="select-tipo-ranking">
     <div
       [ngClass]="{'disabled': !porVotacao}" [ngStyle]="{'background-color': !porVotacao ? 'gray' : 'white'}"
       (click)="mudarTipoRanking()" class="item-select-tipo-ranking shadow">
@@ -14,10 +14,50 @@
     </div>
     <div
       [ngClass]="{'disabled': porVotacao}" [ngStyle]="{'background-color': porVotacao ? 'gray' : 'white'}"
-      (click)="mudarTipoRanking()"  class="item-select-tipo-ranking shadow">
+      (click)="mudarTipoRanking()" class="item-select-tipo-ranking shadow">
       <mat-icon>star_half</mat-icon>
       <span>Por avaliação</span>
     </div>
-  </div>
-  <div style="background-color: white; height: 300px; width: 300px">teste</div>
+  </section>
+  <section class="cards-topicos">
+    <div *ngFor="let item of listaExemplo">
+      <div *ngIf="porVotacao" class="card-por-votacao shadow">
+        <div class="item-card">
+          <span>{{ item.titulo }}</span>
+        </div>
+        <div class="item-card">
+          <div>
+            <img class="medalha" src="assets/img-icons/medalha-primeiro-lugar.png" alt="Medalha de primeiro lugar">
+            <div>
+              <i [ngClass]="['fas', 'fa-' + item.iconPrimeiroLugar]"></i>
+              <span>{{ item.primeiroLugar }}</span>
+            </div>
+          </div>
+          <div>
+            <img class="medalha" src="assets/img-icons/medalha-segundo-lugar.png" alt="Medalha de segundo lugar">
+            <div>
+              <i [ngClass]="['fas', 'fa-' + item.iconSegundoLugar]"></i>
+              <span>{{ item.segundoLugar }}</span>
+            </div>
+          </div>
+          <div>
+            <img class="medalha" src="assets/img-icons/medalha-terceiro-lugar.png" alt="Medalha de terceiro lugar">
+            <div>
+              <i [ngClass]="['fas', 'fa-' + item.iconTerceiroLugar]"></i>
+              <span>{{ item.terceiroLugar }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="item-card">
+          <span>{{ item.qtdVotos }}</span>
+          <span>{{ item.qtdComentarios }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
+
+
+
+
+
