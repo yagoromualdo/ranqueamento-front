@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {TopicoService} from "../services/topico-service";
 
 
 export interface ModelCardInfo {
@@ -14,12 +15,13 @@ export interface ModelCardInfo {
   qtdVotos: number,
   qtdComentarios: number
 }
+
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css']
 })
-export class ContentComponent {
+export class ContentComponent implements OnInit {
 
   listaExemplo: ModelCardInfo[] = [
     {
@@ -122,10 +124,42 @@ export class ContentComponent {
 
   porVotacao: boolean = true;
 
+  listaTopicos: ModelCardInfo[] = [];
+
   constructor(
     private router: Router,
+    private topicoService: TopicoService
   ) {
   }
+
+  ngOnInit() {
+    this.listarTopicos();
+  }
+
+  listarTopicos() {
+    this.topicoService.listar().subscribe(
+      res => {
+        console.log(res);
+        this.listaTopicos = []; // Reset the list to avoid appending to old data
+        for (let i = 0; i < res.length; i++) {
+          const topico: ModelCardInfo = {
+            id: 1,
+            titulo: res[i].nome,
+            iconPrimeiroLugar: 'code',
+            primeiroLugar: 'Tecnologia A',
+            iconSegundoLugar: 'code',
+            segundoLugar: 'Tecnologia B',
+            iconTerceiroLugar: 'code',
+            terceiroLugar: 'Tecnologia C',
+            qtdVotos: 30,
+            qtdComentarios: 10
+          };
+          this.listaTopicos.push(topico);
+        }
+      }
+    )
+  }
+
 
   mudarTipoRanking() {
     this.porVotacao = !this.porVotacao;

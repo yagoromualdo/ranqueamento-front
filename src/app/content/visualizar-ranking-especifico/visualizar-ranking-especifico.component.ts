@@ -12,10 +12,10 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {posicao: 1, icon: 'code', nome: 'Linguagem A', votos: 16, porcentagem: '--,--%', comentarioAFavor: 7, comentarioContra: 0},
-  {posicao: 2, icon: 'code', nome: 'Linguagem A',votos: 14, porcentagem: '--,--%', comentarioAFavor: 4, comentarioContra: 1},
-  {posicao: 3, icon: 'code', nome: 'Linguagem A',votos: 11, porcentagem: '--,--%', comentarioAFavor: 3, comentarioContra: 0},
-  {posicao: 4, icon: 'code', nome: 'Linguagem A', votos: 10, porcentagem: '--,--%', comentarioAFavor: 2, comentarioContra: 2},
+  {posicao: 1, icon: 'code', nome: 'Linguagem A', votos: 16, porcentagem: '19,51%', comentarioAFavor: 7, comentarioContra: 0},
+  {posicao: 2, icon: 'code', nome: 'Linguagem A',votos: 14, porcentagem: '17,07%', comentarioAFavor: 4, comentarioContra: 1},
+  {posicao: 3, icon: 'code', nome: 'Linguagem A',votos: 11, porcentagem: '13,41%', comentarioAFavor: 3, comentarioContra: 0},
+  {posicao: 4, icon: 'code', nome: 'Linguagem A', votos: 10, porcentagem: '12,20%', comentarioAFavor: 2, comentarioContra: 2},
   {posicao: 5, icon: 'code', nome: 'Linguagem A', votos: 8, porcentagem: '--,--%', comentarioAFavor: 2, comentarioContra: 2},
   {posicao: 6, icon: 'code', nome: 'Linguagem A', votos: 7, porcentagem: '--,--%', comentarioAFavor: 0, comentarioContra: 0},
   {posicao: 7, icon: 'code', nome: 'Linguagem A', votos: 6, porcentagem: '--,--%', comentarioAFavor: 1, comentarioContra: 3},
