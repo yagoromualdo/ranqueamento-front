@@ -8,22 +8,22 @@
   <section class="select-tipo-ranking">
     <div
       [ngClass]="{'disabled': !porVotacao}" [ngStyle]="{'background-color': !porVotacao ? 'gray' : 'white'}"
-      (click)="mudarTipoRanking()" class="item-select-tipo-ranking shadow">
+      (click)="mudarTipoRanking()" class="item-select-tipo-ranking">
       <mat-icon>check_circle</mat-icon>
       <span>Por votação</span>
     </div>
     <div
       [ngClass]="{'disabled': porVotacao}" [ngStyle]="{'background-color': porVotacao ? 'gray' : 'white'}"
-      (click)="mudarTipoRanking()" class="item-select-tipo-ranking shadow">
+      (click)="mudarTipoRanking()" class="item-select-tipo-ranking">
       <mat-icon>star_half</mat-icon>
       <span>Por avaliação</span>
     </div>
   </section>
-  <section class="cards-topicos">
+  <section class="cards-topicos" *ngIf="porVotacao">
     <div *ngFor="let item of listaExemplo">
-      <div *ngIf="porVotacao" class="card-por-votacao shadow">
+      <div class="card-por-votacao" (click)="visualizarRank(item.id)">
         <div class="item-card">
-          <span>{{ item.titulo }}</span>
+          <span class="item-card-title limited-text" matTooltip="{{item.titulo}}">{{ item.titulo }}</span>
         </div>
         <div class="item-card">
           <div class="item-center-card">
@@ -33,24 +33,97 @@
               <span>{{ item.primeiroLugar }}</span>
             </div>
           </div>
-          <div>
+          <div class="item-center-card">
             <img class="medalha" src="assets/img-icons/medalha-segundo-lugar.png" alt="Medalha de segundo lugar">
-            <div>
+            <div class="name-item-center-card">
               <i [ngClass]="['fas', 'fa-' + item.iconSegundoLugar]"></i>
               <span>{{ item.segundoLugar }}</span>
             </div>
           </div>
-          <div>
+          <div class="item-center-card">
             <img class="medalha" src="assets/img-icons/medalha-terceiro-lugar.png" alt="Medalha de terceiro lugar">
-            <div>
+            <div class="name-item-center-card">
               <i [ngClass]="['fas', 'fa-' + item.iconTerceiroLugar]"></i>
               <span>{{ item.terceiroLugar }}</span>
             </div>
           </div>
         </div>
         <div class="item-card">
-          <span>{{ item.qtdVotos }}</span>
-          <span>{{ item.qtdComentarios }}</span>
+          <div class="row-totalizadores">
+            <mat-icon>check_circle</mat-icon>
+            <span>{{ item.qtdVotos }} votos</span>
+          </div>
+          <div class="row-totalizadores">
+            <mat-icon>message</mat-icon>
+            <span>{{ item.qtdComentarios }} comentários</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cards-topicos" *ngIf="!porVotacao">
+    <div *ngFor="let item of listaExemplo">
+      <div  class="card-por-votacao" (click)="visualizarRank(item.id)">
+        <div class="item-card">
+          <span class="item-card-title limited-text" matTooltip="{{item.titulo}}">{{ item.titulo }}</span>
+        </div>
+        <div class="item-card">
+          <div class="item-center-card">
+            <img class="medalha" src="assets/img-icons/medalha-primeiro-lugar.png" alt="Medalha de primeiro lugar">
+            <div class="name-item-center-card">
+              <i [ngClass]="['fas', 'fa-' + item.iconPrimeiroLugar]"></i>
+              <span>{{ item.primeiroLugar }}</span>
+              <div class="estrelas">
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star_half</mat-icon>
+              </div>
+              <p class="avaliacao">4,8</p>
+            </div>
+          </div>
+          <div class="item-center-card">
+            <img class="medalha" src="assets/img-icons/medalha-segundo-lugar.png" alt="Medalha de segundo lugar">
+            <div class="name-item-center-card">
+              <i [ngClass]="['fas', 'fa-' + item.iconSegundoLugar]"></i>
+              <span>{{ item.segundoLugar }}</span>
+              <div class="estrelas">
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star_half</mat-icon>
+              </div>
+              <p class="avaliacao">4,5</p>
+            </div>
+          </div>
+          <div class="item-center-card">
+            <img class="medalha" src="assets/img-icons/medalha-terceiro-lugar.png" alt="Medalha de terceiro lugar">
+            <div class="name-item-center-card">
+              <i [ngClass]="['fas', 'fa-' + item.iconTerceiroLugar]"></i>
+              <span>{{ item.terceiroLugar }}</span>
+              <div class="estrelas">
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star</mat-icon>
+                <mat-icon class="custom-icon-size">star_half</mat-icon>
+              </div>
+              <p class="avaliacao">4,3</p>
+            </div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="row-totalizadores">
+            <mat-icon>check_circle</mat-icon>
+            <span>{{ item.qtdVotos }} avaliações</span>
+          </div>
+          <div class="row-totalizadores">
+            <mat-icon>message</mat-icon>
+            <span>{{ item.qtdComentarios }} comentários</span>
+          </div>
         </div>
       </div>
     </div>

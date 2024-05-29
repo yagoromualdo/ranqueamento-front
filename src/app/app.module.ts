@@ -20,6 +20,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {MatTabsModule} from "@angular/material/tabs";
     MatIconModule,
     MatMenuModule,
     MatTabsModule,
+    MatTooltipModule,
     BrowserAnimationsModule
   ],
   providers: [httpInterceptorProviders],

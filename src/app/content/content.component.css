@@ -29,11 +29,15 @@
   padding: 8px 14px 8px 14px;
   background-color: white;
   border-radius: 7px;
-  box-shadow: 0 10px 10px 3px black;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.item-select-tipo-ranking:hover {
+  box-shadow: 0 0.5rem 1rem rgb(38, 38, 38);
 }
 
 .item-select-tipo-ranking mat-icon {
@@ -51,7 +55,7 @@
 
 .cards-topicos {
   width: 100%;
-  margin-top: 26px;
+  margin-top: 29px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,6 +77,30 @@
   align-items: center;
   justify-content: space-between;
   background-color: white;
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-por-votacao:hover {
+  box-shadow: 0 0.5rem 1rem rgb(38, 38, 38);
+}
+
+.card-por-avaliacao {
+  padding: 0 15px 0 15px;
+  border-radius: 7px;
+  margin-bottom: 25px;
+  height: 130px;
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-por-avaliacao:hover {
+  box-shadow: 0 0.5rem 1rem rgb(38, 38, 38);
 }
 
 .item-card {
@@ -86,10 +114,15 @@
   width: 27%;
 }
 
+.item-card-title {
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+}
 
 .item-card:nth-child(2n) {
-  width:65%;
-  justify-content: space-between;
+  width:56%;
+  justify-content: space-around;
 }
 
 .item-center-card {
@@ -104,9 +137,60 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+}
+
+.name-item-center-card span{
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 7px;
 }
 
 .item-card:nth-child(3n) {
-  width: 8%;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 15px;
+  width: 17%;
+}
+
+.row-totalizadores {
+  display: flex;
+  margin: 5px 0 5px 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.row-totalizadores span {
+  margin-left: 5px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.limited-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-icon-size {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.estrelas {
+  margin: 0;
+  line-height: 0;
+  padding: 0;
+}
+
+.avaliacao {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
 }
 
