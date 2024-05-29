@@ -141,20 +141,24 @@ export class ContentComponent implements OnInit {
       res => {
         console.log(res);
         this.listaTopicos = []; // Reset the list to avoid appending to old data
-        for (let i = 0; i < res.length; i++) {
-          const topico: ModelCardInfo = {
-            id: 1,
-            titulo: res[i].nome,
-            iconPrimeiroLugar: 'code',
-            primeiroLugar: 'Tecnologia A',
-            iconSegundoLugar: 'code',
-            segundoLugar: 'Tecnologia B',
-            iconTerceiroLugar: 'code',
-            terceiroLugar: 'Tecnologia C',
-            qtdVotos: 30,
-            qtdComentarios: 10
-          };
-          this.listaTopicos.push(topico);
+        if(res.length > 1) {
+          for (let i = 0; i < res.length; i++) {
+            const topico: ModelCardInfo = {
+              id: 1,
+              titulo: res[i].nome,
+              iconPrimeiroLugar: 'code',
+              primeiroLugar: 'Tecnologia A',
+              iconSegundoLugar: 'code',
+              segundoLugar: 'Tecnologia B',
+              iconTerceiroLugar: 'code',
+              terceiroLugar: 'Tecnologia C',
+              qtdVotos: 30,
+              qtdComentarios: 10
+            };
+            this.listaTopicos.push(topico);
+          }
+        } else {
+          this.listaTopicos = this.listaExemplo;
         }
       }
     )
