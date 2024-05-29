@@ -24,7 +24,7 @@ export class ContentComponent {
   listaExemplo: ModelCardInfo[] = [
     {
       id: 1,
-      titulo: 'Melhor linguagem para trabalhar com IA Teste de limite de tamanho 123 adicionado mais ainda vamos ver até quando fica bom bora ver com mais ainda la ala la',
+      titulo: 'Melhor linguagem para trabalhar com IA',
       iconPrimeiroLugar: 'code',
       primeiroLugar: 'Linguagem A',
       iconSegundoLugar: 'code',

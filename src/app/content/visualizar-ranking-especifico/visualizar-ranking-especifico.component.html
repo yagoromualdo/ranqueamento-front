@@ -1,1 +1,127 @@
-<p>visualizar-ranking-especifico works!</p>
+<div class="ranking-especifico">
+  <header class="title-page">
+    <mat-icon>equalizer</mat-icon>
+    <h1>{{titlePage}}</h1>
+    <mat-icon>equalizer</mat-icon>
+  </header>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="posicao">
+      <th mat-header-cell style="width: 10%; text-align: center" *matHeaderCellDef>Posição</th>
+      <td mat-cell style="width: 10%; text-align: center" *matCellDef="let element"> {{element.posicao}}º</td>
+    </ng-container>
+
+    <ng-container matColumnDef="icon">
+      <th mat-header-cell style="width: 10%; text-align: center" *matHeaderCellDef>Ícone</th>
+      <td mat-cell style="width: 10%; text-align: center" *matCellDef="let element"><i
+        [ngClass]="['fas', 'fa-' + element.icon]"></i></td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell style="width: 25%; text-align: center" *matHeaderCellDef>Nome</th>
+      <td mat-cell style="width: 25%; text-align: center" *matCellDef="let element">{{element.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="votos">
+      <th mat-header-cell style="width: 10%; text-align: center" *matHeaderCellDef> Votos</th>
+      <td mat-cell style="width: 10%; text-align: center" *matCellDef="let element">{{element.votos}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="porcentagem">
+      <th mat-header-cell style="width: 15%; text-align: center" *matHeaderCellDef>Porcentagem</th>
+      <td mat-cell style="width: 15%; text-align: center" *matCellDef="let element">{{element.porcentagem}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="comentarioAFavor">
+      <th mat-header-cell style="width: 15%; text-align: center" *matHeaderCellDef>Comentários a favor</th>
+      <td mat-cell style="width: 15%; text-align: center" *matCellDef="let element">{{element.comentarioAFavor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="comentarioContra">
+      <th mat-header-cell style="width: 15%; text-align: center" *matHeaderCellDef>Comentários contra</th>
+      <td mat-cell style="width: 15%; text-align: center" *matCellDef="let element">{{element.comentarioContra}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div class="btn-votacao">
+    <button mat-raised-button>Participar da votação</button>
+  </div>
+  <div class="comentarios">
+    <div class="row-totalizadores">
+      <span>Comentários totais: 50</span>
+      <span>Comentários comuns: 14</span>
+      <span>Comentários positivos: 20</span>
+      <span>Comentários negativos: 16</span>
+    </div>
+    <div class="card-comentarios">
+      <div class="btn-comentario">
+        <button mat-raised-button>Adicionar comentário</button>
+      </div>
+      <div class="comentario">
+        <div class="info-ususario">
+          <span>João Silva</span>
+          <span>Tecnologia: Linguagem A</span>
+          <span>Tipo de comentário: positivo</span>
+          <span>Data: 29/05/2024</span>
+        </div>
+        <div class="texto-do-comentario">
+          <span>
+            Lorem ipsum dolor sit amet. Est facilis iste et esse numquam eum fugit enim ut saepe quod sed nihil velit! Est molestiae voluptas ut fugit quis est illo eveniet qui temporibus ullam nam quaerat voluptatem et rerum dolore nam officiis fugit. Sed beatae illum ut deleniti excepturi et magnam quibusdam et odit quidem ex itaque dolor ut quos sint hic maiores accusantium.
+            <br><br>
+            Ex odit vero sit laborum expedita non unde voluptatem quo omnis consequuntur in quaerat aliquid. Et velit nostrum vel expedita voluptate id repellat molestiae qui quibusdam laudantium ut quasi dolores sit facilis distinctio? At dolor similique aut dolor autem nam quisquam perferendis ut debitis voluptatum. Sed necessitatibus facilis quo laboriosam temporibus hic voluptatum sint ea sunt consequatur in esse recusandae.
+          </span>
+        </div>
+      </div>
+      <hr>
+      <div class="comentario">
+        <div class="info-ususario">
+          <span>Mateus Souza</span>
+          <span>Tipo de comentário: comum</span>
+          <span>Data: 29/05/2024</span>
+        </div>
+        <div class="texto-do-comentario">
+          <span>
+            Lorem ipsum dolor sit amet. Est facilis iste et esse numquam eum fugit enim ut saepe quod sed nihil velit! Est molestiae voluptas ut fugit quis est illo eveniet qui temporibus ullam nam quaerat voluptatem et rerum dolore nam officiis fugit. Sed beatae illum ut deleniti excepturi et magnam quibusdam et odit quidem ex itaque dolor ut quos sint hic maiores accusantium.
+            <br><br>
+            Ex odit vero sit laborum expedita non unde voluptatem quo omnis consequuntur in quaerat aliquid. Et velit nostrum vel expedita voluptate id repellat molestiae qui quibusdam laudantium ut quasi dolores sit facilis distinctio? At dolor similique aut dolor autem nam quisquam perferendis ut debitis voluptatum. Sed necessitatibus facilis quo laboriosam temporibus hic voluptatum sint ea sunt consequatur in esse recusandae.
+          </span>
+        </div>
+      </div>
+      <hr>
+      <div class="comentario">
+        <div class="info-ususario">
+          <span>Ana Pereira</span>
+          <span>Tecnologia: Linguagem C</span>
+          <span>Tipo de comentário: negativo</span>
+          <span>Data: 29/05/2024</span>
+        </div>
+        <div class="texto-do-comentario">
+          <span>
+            Lorem ipsum dolor sit amet. Est facilis iste et esse numquam eum fugit enim ut saepe quod sed nihil velit! Est molestiae voluptas ut fugit quis est illo eveniet qui temporibus ullam nam quaerat voluptatem et rerum dolore nam officiis fugit. Sed beatae illum ut deleniti excepturi et magnam quibusdam et odit quidem ex itaque dolor ut quos sint hic maiores accusantium.
+            <br><br>
+            Ex odit vero sit laborum expedita non unde voluptatem quo omnis consequuntur in quaerat aliquid. Et velit nostrum vel expedita voluptate id repellat molestiae qui quibusdam laudantium ut quasi dolores sit facilis distinctio? At dolor similique aut dolor autem nam quisquam perferendis ut debitis voluptatum. Sed necessitatibus facilis quo laboriosam temporibus hic voluptatum sint ea sunt consequatur in esse recusandae.
+          </span>
+        </div>
+      </div>
+      <hr>
+      <div class="comentario">
+        <div class="info-ususario">
+          <span>Márcio Nunes</span>
+          <span>Tecnologia: Linguagem D</span>
+          <span>Tipo de comentário: negativo</span>
+          <span>Data: 29/05/2024</span>
+        </div>
+        <div class="texto-do-comentario">
+          <span>
+            Lorem ipsum dolor sit amet. Est facilis iste et esse numquam eum fugit enim ut saepe quod sed nihil velit! Est molestiae voluptas ut fugit quis est illo eveniet qui temporibus ullam nam quaerat voluptatem et rerum dolore nam officiis fugit. Sed beatae illum ut deleniti excepturi et magnam quibusdam et odit quidem ex itaque dolor ut quos sint hic maiores accusantium.
+            <br><br>
+            Ex odit vero sit laborum expedita non unde voluptatem quo omnis consequuntur in quaerat aliquid. Et velit nostrum vel expedita voluptate id repellat molestiae qui quibusdam laudantium ut quasi dolores sit facilis distinctio? At dolor similique aut dolor autem nam quisquam perferendis ut debitis voluptatum. Sed necessitatibus facilis quo laboriosam temporibus hic voluptatum sint ea sunt consequatur in esse recusandae.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

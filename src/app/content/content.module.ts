@@ -5,6 +5,8 @@ import { ContentComponent } from './content.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { VisualizarRankingEspecificoComponent } from './visualizar-ranking-especifico/visualizar-ranking-especifico.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -13,11 +15,13 @@ import { VisualizarRankingEspecificoComponent } from './visualizar-ranking-espec
     ContentComponent,
     VisualizarRankingEspecificoComponent
   ],
-    imports: [
-        CommonModule,
-        ContentRoutingModule,
-        MatIconModule,
-        MatTooltipModule
-    ]
+  imports: [
+    CommonModule,
+    ContentRoutingModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatTableModule,
+    MatButtonModule
+  ]
 })
 export class ContentModule { }
