@@ -133,10 +133,12 @@ export class ContentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.listaTopicos = this.listaExemplo;
     this.listarTopicos();
   }
 
   listarTopicos() {
+
     this.topicoService.listar().subscribe(
       res => {
         console.log(res);
