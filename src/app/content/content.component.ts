@@ -26,7 +26,7 @@ export class ContentComponent implements OnInit {
   listaExemplo: ModelCardInfo[] = [
     {
       id: 1,
-      titulo: 'Melhor linguagem para trabalhar com IA',
+      titulo: 'Melhor linguagem para desenvolvimento de jogos',
       iconPrimeiroLugar: 'code',
       primeiroLugar: 'Linguagem A',
       iconSegundoLugar: 'code',
@@ -38,7 +38,7 @@ export class ContentComponent implements OnInit {
     },
     {
       id: 2,
-      titulo: 'Melhor linguagem para trabalhar com IA',
+      titulo: 'Melhor SGBD NoSQL',
       iconPrimeiroLugar: 'code',
       primeiroLugar: 'Linguagem A',
       iconSegundoLugar: 'code',
@@ -50,7 +50,7 @@ export class ContentComponent implements OnInit {
     },
     {
       id: 3,
-      titulo: 'Melhor linguagem para trabalhar com IA',
+      titulo: 'Melhor framework para desenvolvimento de aplicações desktop',
       iconPrimeiroLugar: 'code',
       primeiroLugar: 'Linguagem A',
       iconSegundoLugar: 'code',
@@ -62,7 +62,7 @@ export class ContentComponent implements OnInit {
     },
     {
       id: 4,
-      titulo: 'Melhor linguagem para trabalhar com IA',
+      titulo: 'Melhor framework para automação de testes',
       iconPrimeiroLugar: 'code',
       primeiroLugar: 'Linguagem A',
       iconSegundoLugar: 'code',
@@ -74,7 +74,7 @@ export class ContentComponent implements OnInit {
     },
     {
       id: 5,
-      titulo: 'Melhor linguagem para trabalhar com IA',
+      titulo: 'Melhor biblioteca para manipulação de dados em Python',
       iconPrimeiroLugar: 'code',
       primeiroLugar: 'Linguagem A',
       iconSegundoLugar: 'code',
@@ -86,7 +86,7 @@ export class ContentComponent implements OnInit {
     },
     {
       id: 6,
-      titulo: 'Melhor linguagem para trabalhar com IA',
+      titulo: 'Melhor biblioteca para animações em JavaScript',
       iconPrimeiroLugar: 'code',
       primeiroLugar: 'Linguagem A',
       iconSegundoLugar: 'code',
@@ -98,7 +98,7 @@ export class ContentComponent implements OnInit {
     },
     {
       id: 7,
-      titulo: 'Melhor linguagem para trabalhar com IA',
+      titulo: 'Melhor biblioteca para desenvolvimento de interfaces gráficas em Python',
       iconPrimeiroLugar: 'code',
       primeiroLugar: 'Linguagem A',
       iconSegundoLugar: 'code',
@@ -110,7 +110,7 @@ export class ContentComponent implements OnInit {
     },
     {
       id: 8,
-      titulo: 'Melhor linguagem para trabalhar com IA',
+      titulo: 'Melhor SGBD para aplicações móveis',
       iconPrimeiroLugar: 'code',
       primeiroLugar: 'Linguagem A',
       iconSegundoLugar: 'code',
