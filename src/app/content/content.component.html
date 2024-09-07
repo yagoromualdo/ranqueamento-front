@@ -63,8 +63,8 @@
   </section>
 
   <section class="cards-topicos" *ngIf="!porVotacao">
-    <div *ngFor="let item of listaTopicos">
-      <div  class="card-por-votacao" (click)="visualizarRank(item.id)">
+    <div *ngFor="let item of listaExemplo">
+      <div  class="card-por-avaliacao" (click)="visualizarRank(item.id)">
         <div class="item-card">
           <span class="item-card-title limited-text" matTooltip="{{item.titulo}}">{{ item.titulo }}</span>
         </div>

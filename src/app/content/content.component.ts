@@ -4,16 +4,16 @@ import {TopicoService} from "../services/topico-service";
 
 
 export interface ModelCardInfo {
-  id: number,
-  titulo: string,
-  iconPrimeiroLugar: string,
-  primeiroLugar: string,
-  iconSegundoLugar: string,
-  segundoLugar: string,
-  iconTerceiroLugar: string,
-  terceiroLugar: string,
-  qtdVotos: number,
-  qtdComentarios: number
+  id: Number,
+  titulo: String,
+  iconPrimeiroLugar: String,
+  primeiroLugar: String,
+  iconSegundoLugar: String,
+  segundoLugar: String,
+  iconTerceiroLugar: String,
+  terceiroLugar: String,
+  qtdVotos: Number,
+  qtdComentarios: Number
 }
 
 @Component({
@@ -142,23 +142,32 @@ export class ContentComponent implements OnInit {
     this.topicoService.listar().subscribe(
       res => {
         console.log(res);
-        this.listaTopicos = []; // Reset the list to avoid appending to old data
+        this.listaTopicos = [];
         if(res.length > 1) {
-          for (let i = 0; i < res.length; i++) {
+          res.forEach(topicoListagem => {
             const topico: ModelCardInfo = {
               id: 1,
-              titulo: res[i].nome,
+              titulo: topicoListagem.topico.nome,
               iconPrimeiroLugar: 'code',
-              primeiroLugar: 'Tecnologia A',
               iconSegundoLugar: 'code',
-              segundoLugar: 'Tecnologia B',
               iconTerceiroLugar: 'code',
-              terceiroLugar: 'Tecnologia C',
-              qtdVotos: 30,
-              qtdComentarios: 10
+              // iconPrimeiroLugar: topicoListagem.primeiroSegundoTerceiro.primeiro ?
+              //   topicoListagem.primeiroSegundoTerceiro.primeiro.icon : 'code',
+              primeiroLugar: topicoListagem.primeiroSegundoTerceiro.primeiro ?
+                topicoListagem.primeiroSegundoTerceiro.primeiro.nome : 'Nenhum',
+              // iconSegundoLugar: topicoListagem.primeiroSegundoTerceiro.segundo.icon ?
+              //   topicoListagem.primeiroSegundoTerceiro.segundo.icon : 'code',
+              segundoLugar: topicoListagem.primeiroSegundoTerceiro.segundo ?
+                topicoListagem.primeiroSegundoTerceiro.segundo.nome : 'Nenhum',
+              // iconTerceiroLugar: topicoListagem.primeiroSegundoTerceiro.terceiro.icon ?
+              //   topicoListagem.primeiroSegundoTerceiro.terceiro.icon : 'code',
+              terceiroLugar: topicoListagem.primeiroSegundoTerceiro.terceiro ?
+                topicoListagem.primeiroSegundoTerceiro.terceiro.nome : 'Nenhum',
+              qtdVotos: topicoListagem.qtdVotos,
+              qtdComentarios: topicoListagem.qtdComentarios ? topicoListagem.qtdComentarios : 0
             };
             this.listaTopicos.push(topico);
-          }
+          })
         } else {
           this.listaTopicos = this.listaExemplo;
         }
@@ -171,7 +180,7 @@ export class ContentComponent implements OnInit {
     this.porVotacao = !this.porVotacao;
   }
 
-  visualizarRank(id: number) {
+  visualizarRank(id: Number) {
     this.router.navigate(['/ranking/', id]).then();
   }
 

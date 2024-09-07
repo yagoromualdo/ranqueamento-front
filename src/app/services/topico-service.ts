@@ -1,10 +1,11 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {TopicosListagemModel} from "../content/models/topicos-listagem.model";
 
-// const API_URL = 'http://localhost:8080/api/test/';
+const API_URL = 'http://localhost:8080/api/';
 
-const API_URL = 'https://ranqueamento-api-production.up.railway.app/api/test/';
+// const API_URL = 'https://ranqueamento-api-production.up.railway.app/api/';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ const API_URL = 'https://ranqueamento-api-production.up.railway.app/api/test/';
 export class TopicoService {
   constructor(private http: HttpClient) {}
 
-  listar(): Observable<any> {
-    return this.http.get(API_URL + 'listar', {});
+  listar(): Observable<Array<TopicosListagemModel>> {
+    return this.http.get<Array<TopicosListagemModel>>(API_URL + 'listar', {});
   }
 }
