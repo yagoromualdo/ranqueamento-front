@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TecnologiasService} from "../../services/tecnologias-service";
 import {TecnologiasModel} from "../models/tecnologias.model";
 import {TopicoInfosGeralModel} from "../models/topico-infos-geral.model";
@@ -26,7 +26,8 @@ export class VotacaoComponent implements OnInit{
     private tecnologiasService: TecnologiasService,
     private topicoService: TopicoService,
     private storageService: StorageService,
-    private votosService: VotosService
+    private votosService: VotosService,
+    private router: Router,
   ) {
   }
 
@@ -54,9 +55,6 @@ export class VotacaoComponent implements OnInit{
   }
 
   votar() {
-    console.log(this.selectedTecnologia);
-    console.log(this.user);
-    console.log(this.idTopico);
     if(this.selectedTecnologia && this.user && this.user.id && this.idTopico) {
       const voto: VotoModel = {
         idTopico: Number(this.idTopico),
@@ -64,8 +62,12 @@ export class VotacaoComponent implements OnInit{
         idUsuario: this.user.id
       };
       this.votosService.votar(voto).subscribe(res => {
-          console.log(res);
+        this.router.navigate(['/ranking/', this.idTopico]).then();
       });
     }
+  }
+
+  cancelar() {
+    this.router.navigate(['/ranking/', this.idTopico]).then();
   }
 }

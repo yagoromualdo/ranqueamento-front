@@ -18,7 +18,7 @@
       </mat-radio-button>
     </mat-radio-group>
     <div class="btns-actions">
-      <button class="btn-cancelar" mat-raised-button >Cancelar</button>
+      <button (click)="cancelar()" class="btn-cancelar" mat-raised-button >Cancelar</button>
       <div [matTooltip]="!selectedTecnologia ? 'Selecione uma tecnologia para realizar a votação' : ''">
         <button class="btn-votar" (click)="votar()" mat-raised-button [disabled]="!selectedTecnologia">Votar</button>
       </div>

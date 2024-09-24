@@ -74,14 +74,11 @@
   align-items: flex-end;
 }
 
-.btn-votar, .btn-cancelar {
+.btn-votar {
+  background-color: #00126c;
   margin-left: 20px;
   min-width: 120px;
   color: white;
-}
-
-.btn-votar {
-  background-color: #00126c;
 }
 
 .btn-votar:hover {
@@ -91,6 +88,9 @@
 
 .btn-cancelar {
   background-color: #850000;
+  margin-left: 20px;
+  min-width: 120px;
+  color: white;
 }
 
 .btn-cancelar:hover {
