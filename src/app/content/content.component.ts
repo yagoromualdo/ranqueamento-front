@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {TopicoService} from "../services/topico-service";
+import {StorageService} from "../authentication/services/storage.service";
 
 
 export interface ModelCardInfo {
@@ -125,16 +126,21 @@ export class ContentComponent implements OnInit {
   porVotacao: boolean = true;
 
   listaTopicos: ModelCardInfo[] = [];
+  user: any;
 
   constructor(
     private router: Router,
-    private topicoService: TopicoService
+    private topicoService: TopicoService,
+    private storageService: StorageService,
   ) {
   }
 
   ngOnInit() {
     this.listaTopicos = this.listaExemplo;
     this.listarTopicos();
+    if(this.storageService.getUser() && this.storageService.getUser().id) {
+      this.user = this.storageService.getUser();
+    }
   }
 
   listarTopicos() {
@@ -187,4 +193,7 @@ export class ContentComponent implements OnInit {
     this.router.navigate(['/ranking/', id]).then();
   }
 
+  criarNovoTopico() {
+    console.log('TESTE');
+  }
 }

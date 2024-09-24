@@ -138,7 +138,11 @@
   </section>
 </div>
 
-
+<div class="div-fab-button" [matTooltip]="user ? 'Criar um Ranking/Tópico' : 'Faça Login ou Cadastro para realizar essa ação'">
+  <button [disabled]="!user" mat-fab class="fab-button" (click)="criarNovoTopico()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
 
 
 
