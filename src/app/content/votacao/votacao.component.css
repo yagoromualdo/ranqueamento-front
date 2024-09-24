@@ -1,0 +1,117 @@
+.card-votacao {
+  margin-top: 35px;
+  margin-bottom: 35px;
+  min-height: 600px;
+  width: 80vw;
+  padding: 0 15px 0 15px;
+  border-radius: 7px;
+  background-color: white;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.title-page {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-page h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0 10px 0 10px;
+}
+
+.title-page mat-icon {
+  height: 50px;
+  width: 50px;
+  font-size: 50px;
+}
+
+.subtitle-page {
+  margin-left: 20px;
+}
+
+.icon-tecnologia {
+  width: 45px;
+  height: 45px;
+}
+
+.row-radio-button {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.column-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 20%;
+  margin-bottom: 10px;
+}
+
+.card-option {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btns-actions {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-right: 70px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.btn-votar, .btn-cancelar {
+  margin-left: 20px;
+  min-width: 120px;
+  color: white;
+}
+
+.btn-votar {
+  background-color: #00126c;
+}
+
+.btn-votar:hover {
+  background-color: #001a9d;
+  box-shadow: 0 0.5rem 1rem rgb(38, 38, 38);
+}
+
+.btn-cancelar {
+  background-color: #850000;
+}
+
+.btn-cancelar:hover {
+  background-color: #c40000;
+  box-shadow: 0 0.5rem 1rem rgb(38, 38, 38);
+}
+
+.btn-votar:disabled {
+  background-color: #777777 !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 1100px) {
+  .column-option {
+    width: 25%;
+  }
+}
+
+@media (max-width: 910px) {
+  .column-option {
+    width: 33.33%;
+  }
+}

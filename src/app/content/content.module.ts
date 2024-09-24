@@ -7,13 +7,18 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import { VisualizarRankingEspecificoComponent } from './visualizar-ranking-especifico/visualizar-ranking-especifico.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from "@angular/material/button";
+import {VotacaoComponent} from "./votacao/votacao.component";
+import {MatRadioModule} from "@angular/material/radio";
+import {FormsModule} from "@angular/forms";
+
 
 
 
 @NgModule({
   declarations: [
     ContentComponent,
-    VisualizarRankingEspecificoComponent
+    VisualizarRankingEspecificoComponent,
+    VotacaoComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +26,9 @@ import {MatButtonModule} from "@angular/material/button";
     MatIconModule,
     MatTooltipModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatRadioModule,
+    FormsModule
   ]
 })
 export class ContentModule { }

@@ -1,53 +1,60 @@
 <div class="ranking-especifico">
   <header class="title-page">
     <mat-icon>equalizer</mat-icon>
-    <h1>{{titlePage}}</h1>
+    <h1>{{topicoInfo.topico?.nome}}</h1>
     <mat-icon>equalizer</mat-icon>
   </header>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container *ngIf="dataSource">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="posicao">
-      <th mat-header-cell style="width: 10%; text-align: center" *matHeaderCellDef>Posição</th>
-      <td mat-cell style="width: 10%; text-align: center" *matCellDef="let element"> {{element.posicao}}º</td>
-    </ng-container>
+      <ng-container matColumnDef="posicao">
+        <th mat-header-cell style="width: 10%; text-align: center" *matHeaderCellDef>Posição</th>
+        <td mat-cell style="width: 10%; text-align: center" *matCellDef="let element"> {{ element.posicao }}º</td>
+      </ng-container>
 
-    <ng-container matColumnDef="icon">
-      <th mat-header-cell style="width: 10%; text-align: center" *matHeaderCellDef>Ícone</th>
-      <td mat-cell style="width: 10%; text-align: center" *matCellDef="let element"><i
-        [ngClass]="['fas', 'fa-' + element.icon]"></i></td>
-    </ng-container>
+      <ng-container matColumnDef="icon">
+        <th mat-header-cell style="width: 10%; text-align: center" *matHeaderCellDef>Ícone</th>
+        <td mat-cell style="width: 10%; text-align: center" *matCellDef="let element">
+          <img class="icon-tecnologia" [src]="element.icon ? 'assets/img-icons/' + element.icon : 'assets/img-icons/code.svg'" alt="icon">
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="nome">
-      <th mat-header-cell style="width: 25%; text-align: center" *matHeaderCellDef>Nome</th>
-      <td mat-cell style="width: 25%; text-align: center" *matCellDef="let element">{{element.nome}} </td>
-    </ng-container>
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell style="width: 25%; text-align: center" *matHeaderCellDef>Nome</th>
+        <td mat-cell style="width: 25%; text-align: center" *matCellDef="let element">{{ element.nome }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="votos">
-      <th mat-header-cell style="width: 10%; text-align: center" *matHeaderCellDef> Votos</th>
-      <td mat-cell style="width: 10%; text-align: center" *matCellDef="let element">{{element.votos}} </td>
-    </ng-container>
+      <ng-container matColumnDef="qtdVotos">
+        <th mat-header-cell style="width: 10%; text-align: center" *matHeaderCellDef> Votos</th>
+        <td mat-cell style="width: 10%; text-align: center" *matCellDef="let element">{{ element.qtdVotos }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="porcentagem">
-      <th mat-header-cell style="width: 15%; text-align: center" *matHeaderCellDef>Porcentagem</th>
-      <td mat-cell style="width: 15%; text-align: center" *matCellDef="let element">{{element.porcentagem}} </td>
-    </ng-container>
+      <ng-container matColumnDef="porcentagem">
+        <th mat-header-cell style="width: 15%; text-align: center" *matHeaderCellDef>Porcentagem</th>
+        <td mat-cell style="width: 15%; text-align: center" *matCellDef="let element">{{ element.porcentagem }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="comentarioAFavor">
-      <th mat-header-cell style="width: 15%; text-align: center" *matHeaderCellDef>Comentários a favor</th>
-      <td mat-cell style="width: 15%; text-align: center" *matCellDef="let element">{{element.comentarioAFavor}} </td>
-    </ng-container>
+      <ng-container matColumnDef="comentarioAFavor">
+        <th mat-header-cell style="width: 15%; text-align: center" *matHeaderCellDef>Comentários a favor</th>
+        <td mat-cell style="width: 15%; text-align: center" *matCellDef="let element">{{ element.comentarioAFavor }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="comentarioContra">
-      <th mat-header-cell style="width: 15%; text-align: center" *matHeaderCellDef>Comentários contra</th>
-      <td mat-cell style="width: 15%; text-align: center" *matCellDef="let element">{{element.comentarioContra}} </td>
-    </ng-container>
+      <ng-container matColumnDef="comentarioContra">
+        <th mat-header-cell style="width: 15%; text-align: center" *matHeaderCellDef>Comentários contra</th>
+        <td mat-cell style="width: 15%; text-align: center" *matCellDef="let element">{{ element.comentarioContra }}
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-container>
   <div class="btn-votacao">
-    <button mat-raised-button>Participar da votação</button>
-  </div>
+    <div [matTooltip]="!user ? 'Faça Login ou Cadastro para realizar essa ação' : ''" >
+    <button [disabled]="!user" mat-raised-button (click)="votacao(id)">Participar da votação</button>
+    </div>
+    </div>
   <div class="comentarios">
     <div class="row-totalizadores">
       <span>Comentários totais: 50</span>

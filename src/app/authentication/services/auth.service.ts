@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-const AUTH_API = 'http://localhost:8080/api/auth/';
-// const AUTH_API = 'https://ranqueamento-api-production.up.railway.app/api/auth/';
+import {environment} from "../../../environments/environment";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,11 +11,13 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+
+  apiUrl = environment.apiUrl + 'auth/';
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(
-      AUTH_API + 'signin',
+      this.apiUrl + 'signin',
       {
         username,
         password,
@@ -28,7 +28,7 @@ export class AuthService {
 
   register(username: string, email: string, password: string): Observable<any> {
     return this.http.post(
-      AUTH_API + 'signup',
+      this.apiUrl + 'signup',
       {
         username,
         email,
@@ -39,6 +39,6 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'signout', { }, httpOptions);
+    return this.http.post(this.apiUrl + 'signout', { }, httpOptions);
   }
 }

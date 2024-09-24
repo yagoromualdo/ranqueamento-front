@@ -7,11 +7,11 @@ export interface ModelCardInfo {
   id: Number,
   titulo: String,
   iconPrimeiroLugar: String,
-  primeiroLugar: String,
-  iconSegundoLugar: String,
-  segundoLugar: String,
-  iconTerceiroLugar: String,
-  terceiroLugar: String,
+  primeiroLugar?: String,
+  iconSegundoLugar?: String,
+  segundoLugar?: String,
+  iconTerceiroLugar?: String,
+  terceiroLugar?: String,
   qtdVotos: Number,
   qtdComentarios: Number
 }
@@ -146,22 +146,25 @@ export class ContentComponent implements OnInit {
         if(res.length > 1) {
           res.forEach(topicoListagem => {
             const topico: ModelCardInfo = {
-              id: 1,
+              id: topicoListagem.topico.id,
               titulo: topicoListagem.topico.nome,
-              iconPrimeiroLugar: 'code',
-              iconSegundoLugar: 'code',
-              iconTerceiroLugar: 'code',
-              // iconPrimeiroLugar: topicoListagem.primeiroSegundoTerceiro.primeiro ?
-              //   topicoListagem.primeiroSegundoTerceiro.primeiro.icon : 'code',
+              iconPrimeiroLugar: topicoListagem.primeiroSegundoTerceiro.primeiro && topicoListagem.primeiroSegundoTerceiro.primeiro.icon
+                ? 'assets/img-icons/' + topicoListagem.primeiroSegundoTerceiro.primeiro.icon
+                : 'assets/img-icons/code.svg',
               primeiroLugar: topicoListagem.primeiroSegundoTerceiro.primeiro ?
                 topicoListagem.primeiroSegundoTerceiro.primeiro.nome : 'Nenhum',
-              // iconSegundoLugar: topicoListagem.primeiroSegundoTerceiro.segundo.icon ?
-              //   topicoListagem.primeiroSegundoTerceiro.segundo.icon : 'code',
+              iconSegundoLugar: topicoListagem.primeiroSegundoTerceiro.segundo && topicoListagem.primeiroSegundoTerceiro.segundo.icon
+                ? 'assets/img-icons/' + topicoListagem.primeiroSegundoTerceiro.segundo.icon
+                : 'assets/img-icons/code.svg',
               segundoLugar: topicoListagem.primeiroSegundoTerceiro.segundo ?
                 topicoListagem.primeiroSegundoTerceiro.segundo.nome : 'Nenhum',
-              // iconTerceiroLugar: topicoListagem.primeiroSegundoTerceiro.terceiro.icon ?
-              //   topicoListagem.primeiroSegundoTerceiro.terceiro.icon : 'code',
+              iconTerceiroLugar: topicoListagem.primeiroSegundoTerceiro.terceiro && topicoListagem.primeiroSegundoTerceiro.terceiro.icon
+                ? 'assets/img-icons/' + topicoListagem.primeiroSegundoTerceiro.terceiro.icon
+                : 'assets/img-icons/code.svg',
               terceiroLugar: topicoListagem.primeiroSegundoTerceiro.terceiro ?
+
+
+
                 topicoListagem.primeiroSegundoTerceiro.terceiro.nome : 'Nenhum',
               qtdVotos: topicoListagem.qtdVotos,
               qtdComentarios: topicoListagem.qtdComentarios ? topicoListagem.qtdComentarios : 0

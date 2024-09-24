@@ -26,25 +26,33 @@
           <span class="item-card-title limited-text" matTooltip="{{item.titulo}}">{{ item.titulo }}</span>
         </div>
         <div class="item-card">
-          <div class="item-center-card">
-            <img class="medalha" src="assets/img-icons/medalha-primeiro-lugar.png" alt="Medalha de primeiro lugar">
-            <div class="name-item-center-card">
-              <i [ngClass]="['fas', 'fa-' + item.iconPrimeiroLugar]"></i>
-              <span>{{ item.primeiroLugar }}</span>
+          <div class="row" style="width: 100%">
+            <div class="col-4">
+              <div class="item-center-card">
+                <img class="medalha" src="assets/img-icons/medalha-primeiro-lugar.png" alt="Medalha de primeiro lugar">
+                <div class="name-item-center-card">
+                  <img class="icon-tecnologia" [src]="item.iconPrimeiroLugar" alt="Tecnologia primeiro lugar">
+                  <span>{{ item.primeiroLugar }}</span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="item-center-card">
-            <img class="medalha" src="assets/img-icons/medalha-segundo-lugar.png" alt="Medalha de segundo lugar">
-            <div class="name-item-center-card">
-              <i [ngClass]="['fas', 'fa-' + item.iconSegundoLugar]"></i>
-              <span>{{ item.segundoLugar }}</span>
+            <div class="col-4">
+              <div class="item-center-card">
+                <img class="medalha" src="assets/img-icons/medalha-segundo-lugar.png" alt="Medalha de segundo lugar">
+                <div class="name-item-center-card">
+                  <img class="icon-tecnologia" [src]="item.iconSegundoLugar" alt="Tecnologia segundo lugar">
+                  <span>{{ item.segundoLugar }}</span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="item-center-card">
-            <img class="medalha" src="assets/img-icons/medalha-terceiro-lugar.png" alt="Medalha de terceiro lugar">
-            <div class="name-item-center-card">
-              <i [ngClass]="['fas', 'fa-' + item.iconTerceiroLugar]"></i>
-              <span>{{ item.terceiroLugar }}</span>
+            <div class="col-4">
+              <div class="item-center-card">
+                <img class="medalha" src="assets/img-icons/medalha-terceiro-lugar.png" alt="Medalha de terceiro lugar">
+                <div class="name-item-center-card">
+                  <img class="icon-tecnologia" [src]="item.iconTerceiroLugar" alt="Tecnologia terceiro lugar">
+                  <span>{{ item.terceiroLugar }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

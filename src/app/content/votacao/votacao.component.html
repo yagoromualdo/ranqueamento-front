@@ -1,0 +1,27 @@
+<div style="display: flex; align-items: center; justify-content: center">
+  <div class="card-votacao">
+    <header class="title-page">
+      <mat-icon>equalizer</mat-icon>
+      <h1>{{topicoInfo.topico?.nome}}</h1>
+      <mat-icon>equalizer</mat-icon>
+    </header>
+    <div class="subtitle-page">
+      <h2>Escolha uma das tecnologias para votar:</h2>
+    </div>
+    <mat-radio-group [(ngModel)]="selectedTecnologia" aria-label="Select an option" class="row-radio-button">
+      <mat-radio-button color="primary" class="column-option" *ngFor="let tecnologia of tecnologias" [value]="tecnologia.id">
+        <div class="card-option">
+          <img class="icon-tecnologia"
+               [src]="tecnologia.icon ? 'assets/img-icons/' + tecnologia.icon : 'assets/img-icons/code.svg'" alt="icon">
+          {{ tecnologia.nome }}
+        </div>
+      </mat-radio-button>
+    </mat-radio-group>
+    <div class="btns-actions">
+      <button class="btn-cancelar" mat-raised-button >Cancelar</button>
+      <div [matTooltip]="!selectedTecnologia ? 'Selecione uma tecnologia para realizar a votação' : ''">
+        <button class="btn-votar" (click)="votar()" mat-raised-button [disabled]="!selectedTecnologia">Votar</button>
+      </div>
+    </div>
+  </div>
+</div>

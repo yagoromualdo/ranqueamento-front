@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatTableModule} from "@angular/material/table";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -47,8 +48,10 @@ import {MatTableModule} from "@angular/material/table";
     MatTabsModule,
     MatTooltipModule,
     MatTableModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatRadioModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

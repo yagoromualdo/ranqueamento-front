@@ -1,6 +1,7 @@
 export interface TecnologiasModel {
-  id: number;
-  nome: string;
-  icon: string;
-  idTipo: number;
+  id?: number;
+  nome?: string;
+  icon?: string;
+  idTipo?: number;
+  qtdVotos?: number;
 }

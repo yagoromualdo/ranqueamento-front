@@ -1,5 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
+import {TopicoService} from "../../services/topico-service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {TopicoInfosGeralModel} from "../models/topico-infos-geral.model";
+import {TecnologiasModel} from "../models/tecnologias.model";
+import {TopicoModel} from "../models/topico.model";
+import {StorageService} from "../../authentication/services/storage.service";
 
 export interface PeriodicElement {
   posicao: number;
@@ -29,11 +35,41 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './visualizar-ranking-especifico.component.html',
   styleUrls: ['./visualizar-ranking-especifico.component.css']
 })
-export class VisualizarRankingEspecificoComponent {
+export class VisualizarRankingEspecificoComponent implements OnInit {
 
-  displayedColumns: string[] = ['posicao', 'icon', 'nome', 'votos', 'porcentagem', 'comentarioAFavor', 'comentarioContra'];
-  dataSource = ELEMENT_DATA;
+  id: any;
+  displayedColumns: string[] = ['posicao', 'icon', 'nome', 'qtdVotos', 'porcentagem', 'comentarioAFavor', 'comentarioContra'];
+  dataSourceT = ELEMENT_DATA;
+  topicoInfo: TopicoInfosGeralModel = {};
+  dataSource: TecnologiasModel[] | undefined = [];
+  user: any;
 
-  titlePage = "Melhor linguagem para trabalhar com IA";
+  constructor(
+    private topicoService: TopicoService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private storageService: StorageService,
+  ) {
+  }
 
+  ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.fazerConsultasIniciais();
+    if(this.storageService.getUser() && this.storageService.getUser().id) {
+      this.user = this.storageService.getUser();
+    }
+  }
+
+  fazerConsultasIniciais() {
+    if(this.id) {
+      this.topicoService.buscarPorId(this.id).subscribe(res => {
+        this.topicoInfo = res;
+        this.dataSource = res.tecnologias;
+      });
+    }
+  }
+
+  votacao(id: Number) {
+    this.router.navigate(['/ranking/votacao/', id]).then();
+  }
 }
