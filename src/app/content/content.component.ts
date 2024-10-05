@@ -147,7 +147,6 @@ export class ContentComponent implements OnInit {
 
     this.topicoService.listar().subscribe(
       res => {
-        console.log(res);
         this.listaTopicos = [];
         if(res.length > 1) {
           res.forEach(topicoListagem => {
@@ -194,6 +193,6 @@ export class ContentComponent implements OnInit {
   }
 
   criarNovoTopico() {
-    console.log('TESTE');
+    this.router.navigate(['/ranking/r/criar']).then();
   }
 }

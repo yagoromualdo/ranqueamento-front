@@ -1,0 +1,52 @@
+<div style="display: flex; align-items: center; justify-content: center">
+  <div class="card-main">
+    <header class="title-page">
+      <mat-icon>equalizer</mat-icon>
+      <h1>Crie seu próprio Ranking/Tópico</h1>
+      <mat-icon>equalizer</mat-icon>
+    </header>
+
+    <form [formGroup]="form" style="margin-top: 20px">
+      <div class="row row-center">
+        <div class="col col-md-5">
+          <label for="select-tipo" class="form-label">Selecione o tipo de tecnologias:</label>
+          <select id="select-tipo" class="form-select" formControlName="tipo">
+            <option value="1">Linguagens de programação</option>
+            <option value="2">Frameworks</option>
+            <option value="3">Bibliotecas (Libs e Packages)</option>
+            <option value="4">SGBDs/Banco de Dados</option>
+          </select>
+        </div>
+        <div class="col col-md-5">
+          <label for="select-categoria" class="form-label">Selecione a categoria:</label>
+          <select id="select-categoria" class="form-select" formControlName="categoria">
+            <option value="1">Por votação</option>
+            <option value="2">Por avaliação</option>
+          </select>
+        </div>
+      </div>
+      <div class="row row-center" style="margin-top: 45px">
+        <div class="col col-md-10">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Digite o Nome/Título do ranking:</label>
+            <input id="nome" type="text" class="form-control" placeholder="Nome" formControlName="nome">
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-center" style="margin-top: 20px">
+        <div class="col col-md-10 align-items-end">
+          <div class="row-end">
+            <button type="button" class="btn btn-danger btn-action" (click)="cancelar()" style="margin-right: 18px">
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-success btn-action" (click)="salvar()">
+              Salvar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

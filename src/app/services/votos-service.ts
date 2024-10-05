@@ -16,4 +16,8 @@ export class VotosService {
   votar(voto: VotoModel): Observable<VotoModel> {
     return this.http.post<VotoModel>(this.apiUrl + 'votacao/votar', voto);
   }
+
+  obterVotoPorTopicoEUsuario(voto: VotoModel): Observable<VotoModel> {
+    return this.http.post<VotoModel>(this.apiUrl + 'votacao/obterVotoPorTopicoEUsuario', voto);
+  }
 }

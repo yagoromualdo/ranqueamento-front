@@ -9,7 +9,10 @@ import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from "@angular/material/button";
 import {VotacaoComponent} from "./votacao/votacao.component";
 import {MatRadioModule} from "@angular/material/radio";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CriarRankingComponent } from './criar-ranking/criar-ranking.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 
 
@@ -18,7 +21,8 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     ContentComponent,
     VisualizarRankingEspecificoComponent,
-    VotacaoComponent
+    VotacaoComponent,
+    CriarRankingComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +32,10 @@ import {FormsModule} from "@angular/forms";
     MatTableModule,
     MatButtonModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
   ]
 })
 export class ContentModule { }

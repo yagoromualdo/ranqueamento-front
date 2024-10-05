@@ -1,0 +1,45 @@
+.card-main {
+  margin-top: 35px;
+  margin-bottom: 35px;
+  min-height: 600px;
+  width: 80vw;
+  padding: 0 40px 0 40px;
+  border-radius: 7px;
+  background-color: white;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.title-page {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-page h1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0 10px 0 10px;
+}
+
+.title-page mat-icon {
+  height: 40px;
+  width: 40px;
+  font-size: 40px;
+}
+
+.row-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-action {
+  width: 120px;
+}
+
+.row-end {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}

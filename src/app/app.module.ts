@@ -10,7 +10,7 @@ import { ProfileComponent } from './authentication/profile/profile.component';
 import { BoardAdminComponent } from './authentication/board-admin/board-admin.component';
 import { BoardModeratorComponent } from './authentication/board-moderator/board-moderator.component';
 import { BoardUserComponent } from './authentication/board-user/board-user.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {httpInterceptorProviders} from "./authentication/helpers/http.interceptor";
 import { AuthenticationComponent } from './authentication/authentication.component';
@@ -23,6 +23,8 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatTableModule} from "@angular/material/table";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatInputModule} from "@angular/material/input";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
@@ -50,6 +52,9 @@ import {MatRadioModule} from "@angular/material/radio";
     MatTableModule,
     BrowserAnimationsModule,
     MatRadioModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [httpInterceptorProviders],

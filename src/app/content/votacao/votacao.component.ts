@@ -20,6 +20,7 @@ export class VotacaoComponent implements OnInit{
   topicoInfo: TopicoInfosGeralModel = {};
   selectedTecnologia: any = null;
   user: any;
+  tecnologiaVotada: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,6 +49,17 @@ export class VotacaoComponent implements OnInit{
         if (res.topico && res.topico.idTipo) {
           this.tecnologiasService.listar(res.topico.idTipo).subscribe(tec => {
             this.tecnologias = tec;
+
+            const voto: VotoModel = {
+              idTopico: Number(this.idTopico),
+              idTecnologia: undefined,
+              idUsuario: this.user.id
+            };
+            this.votosService.obterVotoPorTopicoEUsuario(voto).subscribe(vot => {
+              if (vot && vot.idTecnologia) {
+                this.selectedTecnologia = vot.idTecnologia;
+              }
+            });
           });
         }
       });
