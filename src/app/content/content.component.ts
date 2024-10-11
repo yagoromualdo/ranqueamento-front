@@ -125,7 +125,7 @@ export class ContentComponent implements OnInit {
 
   porVotacao: boolean = true;
 
-  listaTopicos: ModelCardInfo[] = [];
+  listaTopicosPorVotacao: ModelCardInfo[] = [];
   user: any;
 
   constructor(
@@ -136,7 +136,7 @@ export class ContentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listaTopicos = this.listaExemplo;
+    // this.listaTopicosPorVotacao = this.listaExemplo;
     this.listarTopicos();
     if(this.storageService.getUser() && this.storageService.getUser().id) {
       this.user = this.storageService.getUser();
@@ -145,10 +145,10 @@ export class ContentComponent implements OnInit {
 
   listarTopicos() {
 
-    this.topicoService.listar().subscribe(
+    this.topicoService.listarTopicosPorVotacao().subscribe(
       res => {
-        this.listaTopicos = [];
-        if(res.length > 1) {
+        this.listaTopicosPorVotacao = [];
+        if(res.length > 0) {
           res.forEach(topicoListagem => {
             const topico: ModelCardInfo = {
               id: topicoListagem.topico.id,
@@ -174,13 +174,13 @@ export class ContentComponent implements OnInit {
               qtdVotos: topicoListagem.qtdVotos,
               qtdComentarios: topicoListagem.qtdComentarios ? topicoListagem.qtdComentarios : 0
             };
-            this.listaTopicos.push(topico);
+            this.listaTopicosPorVotacao.push(topico);
           })
         } else {
-          this.listaTopicos = this.listaExemplo;
+          // this.listaTopicosPorVotacao = this.listaExemplo;
         }
       }
-    )
+    );
   }
 
 

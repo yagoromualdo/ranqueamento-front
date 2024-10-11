@@ -43,7 +43,7 @@ export class CriarRankingComponent implements OnInit {
       const topico: TopicoModel = {
         id: 0,
         idTipo: this.form.get('tipo')?.value,
-        idCategoria: this.form.get('categoria')?.value,
+        categoria: this.form.get('categoria')?.value,
         nome: this.form.get('nome')?.value,
         idUsuario: this.user.id
       }

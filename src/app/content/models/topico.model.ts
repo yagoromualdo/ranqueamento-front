@@ -2,6 +2,6 @@ export interface TopicoModel {
   id: number;
   nome: string;
   idTipo: number;
-  idCategoria: number;
+  categoria: number;
   idUsuario: number;
 }

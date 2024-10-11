@@ -1,6 +1,6 @@
 <header class="title-page">
   <mat-icon>equalizer</mat-icon>
-  <h1>RANKING</h1>
+  <h1>Ranking de tecnologias da programação</h1>
   <mat-icon>equalizer</mat-icon>
 </header>
 
@@ -20,7 +20,7 @@
     </div>
   </section>
   <section class="cards-topicos" *ngIf="porVotacao">
-    <div *ngFor="let item of listaTopicos">
+    <div *ngFor="let item of listaTopicosPorVotacao">
       <div class="card-por-votacao" (click)="visualizarRank(item.id)">
         <div class="item-card">
           <span class="item-card-title limited-text" matTooltip="{{item.titulo}}">{{ item.titulo }}</span>

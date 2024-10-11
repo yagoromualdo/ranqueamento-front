@@ -19,9 +19,14 @@ export class TopicoService {
     return this.http.post<TopicoModel>(this.apiUrl + 'topico/salvar', topico);
   }
 
-  listar(): Observable<Array<TopicosListagemModel>> {
-    return this.http.get<Array<TopicosListagemModel>>(this.apiUrl + 'topico/listar', {});
+  listarTopicosPorVotacao(): Observable<Array<TopicosListagemModel>> {
+    return this.http.get<Array<TopicosListagemModel>>(this.apiUrl + 'topico/listarTopicosPorVotacao', {});
   }
+
+  listarTopicosPorAvaliacao(): Observable<Array<TopicosListagemModel>> {
+    return this.http.get<Array<TopicosListagemModel>>(this.apiUrl + 'topico/listarTopicosPorAvaliacao', {});
+  }
+
 
   buscarPorId(id: number): Observable<TopicoInfosGeralModel> {
     return this.http.get<TopicoInfosGeralModel>(`${this.apiUrl}topico/buscarPorId/${id}`);

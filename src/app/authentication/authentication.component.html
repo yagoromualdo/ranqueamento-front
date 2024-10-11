@@ -1,8 +1,8 @@
-<mat-tab-group>
+<mat-tab-group  [(selectedIndex)]="selectedTabIndex">
   <mat-tab label="Login"  style="background-color: white">
     <app-login></app-login>
   </mat-tab>
   <mat-tab label="Cadastro">
-    <app-register></app-register>
+    <app-register (goToLogin)="goToLogin()"></app-register>
   </mat-tab>
 </mat-tab-group>

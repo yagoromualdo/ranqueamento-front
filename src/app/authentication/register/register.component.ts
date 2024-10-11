@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 
 @Component({
@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  @Output() goToLogin = new EventEmitter<void>();
 
   constructor(private authService: AuthService) { }
 
@@ -29,6 +30,7 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        this.goToLogin.emit();
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -36,6 +38,5 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
-
 
 }

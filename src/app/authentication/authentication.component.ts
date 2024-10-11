@@ -16,6 +16,7 @@ export class AuthenticationComponent implements OnInit{
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  selectedTabIndex = 0;
 
   eventBusSub?: Subscription;
 
@@ -55,6 +56,10 @@ export class AuthenticationComponent implements OnInit{
         console.log(err);
       }
     });
+  }
+
+  goToLogin() {
+    this.selectedTabIndex = 0;
   }
 }
 
