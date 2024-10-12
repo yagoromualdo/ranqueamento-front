@@ -25,6 +25,9 @@ import {MatTableModule} from "@angular/material/table";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { MensagemPadraoComponent } from './utils/mensagens/mensagem-padrao/mensagem-padrao.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    MensagemPadraoComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +59,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSnackBarModule,
+    MatDialogModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [httpInterceptorProviders],

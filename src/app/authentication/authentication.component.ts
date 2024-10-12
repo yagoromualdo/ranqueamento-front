@@ -4,6 +4,8 @@ import {StorageService} from "./services/storage.service";
 import {AuthService} from "./services/auth.service";
 import {EventBusService} from "./shared/event-bus.service";
 import {AppService} from "../services/app-service";
+import {MensagemPadraoComponent} from "../utils/mensagens/mensagem-padrao/mensagem-padrao.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-authentication',
@@ -17,13 +19,15 @@ export class AuthenticationComponent implements OnInit{
   showModeratorBoard = false;
   username?: string;
   selectedTabIndex = 0;
-
   eventBusSub?: Subscription;
+  mostrarSucessoCadastro: boolean = false;
+
 
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
     private eventBusService: EventBusService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +64,7 @@ export class AuthenticationComponent implements OnInit{
 
   goToLogin() {
     this.selectedTabIndex = 0;
+    this.mostrarSucessoCadastro = true;
   }
 }
 

@@ -1,10 +1,15 @@
-<div class="col-md-12">
+<div class="content-cadastro">
+  <div class="two-divs">
+    <h1 class="titulo">Bem-vindo ao</h1>
+    <h1 class="titulo">Ranking de</h1>
+    <h1 class="titulo">Tecnologias</h1>
+    <h1 class="titulo">da Programação</h1>
+  </div>
+  <div class="two-divs">
   <div class="card card-container">
-    <img
-      id="profile-img"
-      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-      class="profile-img-card"
-    />
+    <div class="icon-title centralizar">
+      <mat-icon>equalizer</mat-icon>
+    </div>
     <form
       *ngIf="!isSuccessful"
       name="form"
@@ -13,7 +18,7 @@
       novalidate
     >
       <div class="form-group">
-        <label for="username">Nome/Username</label>
+        <label for="username">Nome de usuário (Username)</label>
         <input
           type="text"
           class="form-control"
@@ -22,6 +27,7 @@
           required
           minlength="3"
           maxlength="20"
+          pattern="^[a-z0-9._]*$"
           #username="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
         />
@@ -32,6 +38,30 @@
           </div>
           <div *ngIf="username.errors['maxlength']">
             O nome de usuário deve ter no máximo 20 caracteres
+          </div>
+          <div *ngIf="username.errors['pattern']">
+            O nome de usuário só pode conter letras minúsculas, números, pontos '.' e sublinhados/underline '_'
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="apelido">Nome ou Apelido</label>
+        <input
+          id="apelido"
+          type="text"
+          class="form-control"
+          name="apelido"
+          [(ngModel)]="form.apelido"
+          required
+          maxlength="50"
+          #apelido="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && apelido.errors }"
+        />
+        <div class="invalid-feedback" *ngIf="apelido.errors && f.submitted">
+          <div *ngIf="apelido.errors['required']">Nome ou Apelido é obrigatório</div>
+          <div *ngIf="apelido.errors['maxlength']">
+            O nome ou apelido deve ter no máximo 50 caracteres
           </div>
         </div>
       </div>
@@ -82,8 +112,15 @@
       </div>
     </form>
 
+
+
+
     <div class="alert alert-success" *ngIf="isSuccessful">
       Seu usuário foi criado com sucesso!
     </div>
+
+  </div>
   </div>
 </div>
+
+
