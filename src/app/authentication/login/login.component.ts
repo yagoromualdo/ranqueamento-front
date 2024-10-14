@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['mostrarSucessoCadastro'] && changes['mostrarSucessoCadastro'].currentValue) {
       const dialogRef = this.dialog.open(MensagemPadraoComponent, {
-        data: {message: 'Usuário cadastrado com sucesso!'},
+        data: {message: 'Usuário cadastrado com sucesso!', tipo: 'sucesso'},
         position: {bottom: '0px'},
         panelClass: 'custom-dialog'
       });

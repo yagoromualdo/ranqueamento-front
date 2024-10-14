@@ -1,4 +1,4 @@
-<div class="dialog-container">
+<div class="dialog-container" [ngStyle]="{ 'backgroundColor': backgroundColor }">
   <span style="font-size: 18px">{{ data.message }}</span>
   <button mat-icon-button (click)="closeDialog()" aria-label="Close">
     <mat-icon>close</mat-icon>

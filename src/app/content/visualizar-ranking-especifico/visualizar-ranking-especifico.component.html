@@ -63,8 +63,48 @@
       <span>Comentários negativos: 16</span>
     </div>
     <div class="card-comentarios">
-      <div class="btn-comentario">
-        <button mat-raised-button>Adicionar comentário</button>
+      <div class="btn-comentario" [matTooltip]="!user ? 'Faça Login ou Cadastro para realizar essa ação' : ''">
+        <button [disabled]="!user" mat-raised-button (click)="adicionarComentario()">Adicionar comentário</button>
+      </div>
+      <div class="card-criacao-comentario" *ngIf="adicionandoComentario">
+        <form [formGroup]="formComentario">
+          <div class="row centralizar">
+            <div class="col-md-10">
+              <div class="row">
+                <div class="col-md-4" style="margin-right: 20px">
+                  <label for="select-tipo" class="form-label">Selecione o tipo de comentário:</label>
+                  <select id="select-tipo" class="form-select" formControlName="tipoDeComentario">
+                    <option value="Comum">Comum</option>
+                    <option value="Positivo">Positivo</option>
+                    <option value="Negativo">Negativo</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <ng-container *ngIf="formComentario.get('tipoDeComentario')?.value !== 'Comum'">
+                    <label for="select-tecnologia" class="form-label">Selecione a tecnologia:</label>
+                    <select id="select-tecnologia" class="form-select" formControlName="tecnologia">
+                      <ng-container *ngFor="let tecnologia of listTecnologias">
+                        <option [value]="tecnologia.id">{{ tecnologia.nome }}</option>
+                      </ng-container>
+                    </select>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row centralizar" style="margin-top: 20px">
+            <div class="col-md-10">
+              <div class="form-group">
+                <label for="comentario">Comentário</label>
+                <textarea class="form-control" id="comentario" rows="3" formControlName="comentario"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="btns-actions">
+            <button (click)="cancelarComentario()" class="btn-cancelar" mat-raised-button >Cancelar</button>
+              <button class="btn-comentar" (click)="salvarComentario()" mat-raised-button>Salvar comentário</button>
+          </div>
+        </form>
       </div>
       <div class="comentario">
         <div class="info-ususario">

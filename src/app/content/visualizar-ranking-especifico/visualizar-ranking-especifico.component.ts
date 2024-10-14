@@ -6,6 +6,11 @@ import {TopicoInfosGeralModel} from "../models/topico-infos-geral.model";
 import {TecnologiasModel} from "../models/tecnologias.model";
 import {TopicoModel} from "../models/topico.model";
 import {StorageService} from "../../authentication/services/storage.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {TecnologiasService} from "../../services/tecnologias-service";
+import {MensagemPadraoComponent} from "../../utils/mensagens/mensagem-padrao/mensagem-padrao.component";
+import {MatDialog} from "@angular/material/dialog";
+import {ComentarioService} from "../../services/comentario-service";
 
 export interface PeriodicElement {
   posicao: number;
@@ -43,13 +48,21 @@ export class VisualizarRankingEspecificoComponent implements OnInit {
   topicoInfo: TopicoInfosGeralModel = {};
   dataSource: TecnologiasModel[] | undefined = [];
   user: any;
+  formComentario!: FormGroup;
+  listTecnologias: TecnologiasModel[] = [];
+  adicionandoComentario = false;
 
   constructor(
     private topicoService: TopicoService,
     private route: ActivatedRoute,
     private router: Router,
     private storageService: StorageService,
+    private fb: FormBuilder,
+    private tecnologiasService: TecnologiasService,
+    private dialog: MatDialog,
+    private comentarioService: ComentarioService
   ) {
+    this.criarForm();
   }
 
   ngOnInit() {
@@ -60,16 +73,106 @@ export class VisualizarRankingEspecificoComponent implements OnInit {
     }
   }
 
+  criarForm() {
+    this.formComentario = this.fb.group({
+      tipoDeComentario: ['Comum', [Validators.required]],
+      comentario: ['', [Validators.required]],
+      tecnologia: ['']
+    });
+  }
+
   fazerConsultasIniciais() {
-    if(this.id) {
+    if (this.id) {
       this.topicoService.buscarPorId(this.id).subscribe(res => {
         this.topicoInfo = res;
         this.dataSource = res.tecnologias;
+        if (res && res.topico && res.topico.idTipo) {
+          this.tecnologiasService.listar(res.topico.idTipo).subscribe(tec => {
+            this.listTecnologias = tec;
+          });
+        }
       });
     }
   }
 
   votacao(id: Number) {
     this.router.navigate(['/ranking/votacao/', id]).then();
+  }
+
+  adicionarComentario() {
+    this.adicionandoComentario = true;
+  }
+
+  cancelarComentario() {
+    this.adicionandoComentario = false;
+  }
+
+
+  salvarComentario() {
+    const idTecnologiaSemEspacos = this.formComentario && this.formComentario.get('tecnologia')
+    && this.formComentario.get('tecnologia')?.value
+      ? this.formComentario.get('tecnologia')?.value.replace(/\s+/g, '')
+      : '';
+    const tipoDeComentarioSemEspacos = this.formComentario && this.formComentario.get('tipoDeComentario')
+    && this.formComentario.get('tipoDeComentario')?.value
+      ? this.formComentario.get('tipoDeComentario')?.value.replace(/\s+/g, '')
+      : '';
+    const comentarioSemEspacos = this.formComentario && this.formComentario.get('comentario')
+    && this.formComentario.get('comentario')?.value
+      ? this.formComentario.get('comentario')?.value.replace(/\s+/g, '')
+      : '';
+
+
+    if(tipoDeComentarioSemEspacos !== '' && comentarioSemEspacos !== ''
+      && (this.formComentario.get('tipoDeComentario')?.value === 'Comum' || idTecnologiaSemEspacos !== '')) {
+
+
+
+      const comentarioParaSalvar = {
+        idUsuario: this.user.id,
+        idTopico: this.id,
+        tipoDeComentario: this.formComentario.get('tipoDeComentario')?.value,
+        comentario: this.formComentario.get('comentario')?.value,
+        idTecnologia: this.formComentario.get('tecnologia')?.value
+      }
+
+      this.comentarioService.salvarComentario(comentarioParaSalvar).subscribe(res => {
+        if(res) {
+          this.adicionandoComentario = false;
+          const dialogRef = this.dialog.open(MensagemPadraoComponent, {
+            data: {message: 'Comentário salvo com sucesso!', tipo: 'sucesso'},
+            position: {bottom: '0px'},
+            panelClass: 'custom-dialog'
+          });
+
+          setTimeout(() => {
+            dialogRef.close();
+          }, 4000);
+        }
+      });
+
+    } else if(this.formComentario.get('tipoDeComentario')?.value !== 'Comum'
+      && idTecnologiaSemEspacos === '') {
+      const dialogRef = this.dialog.open(MensagemPadraoComponent, {
+        data: {message: 'Adicione a tecnologia vinculada ao comentário positivo ou negativo', tipo: 'alerta'},
+        position: {bottom: '0px'},
+        panelClass: 'custom-dialog'
+      });
+
+      setTimeout(() => {
+        dialogRef.close();
+      }, 3000);
+    } else {
+      const dialogRef = this.dialog.open(MensagemPadraoComponent, {
+        data: {message: 'Preencha todos os campos corretamente', tipo: 'alerta'},
+        position: {bottom: '0px'},
+        panelClass: 'custom-dialog'
+      });
+
+      setTimeout(() => {
+        dialogRef.close();
+      }, 3000);
+    }
+    this.formComentario.get('tipoDeComentario')?.value;
   }
 }
