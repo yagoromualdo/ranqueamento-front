@@ -1,7 +1,7 @@
 <div class="ranking-especifico">
   <header class="title-page">
     <mat-icon>equalizer</mat-icon>
-    <h1>{{topicoInfo.topico?.nome}}</h1>
+    <h1>{{ topicoInfo.topico?.nome }}</h1>
     <mat-icon>equalizer</mat-icon>
   </header>
   <ng-container *ngIf="dataSource">
@@ -15,7 +15,8 @@
       <ng-container matColumnDef="icon">
         <th mat-header-cell style="width: 10%; text-align: center" *matHeaderCellDef>Ícone</th>
         <td mat-cell style="width: 10%; text-align: center" *matCellDef="let element">
-          <img class="icon-tecnologia" [src]="element.icon ? 'assets/img-icons/' + element.icon : 'assets/img-icons/code.svg'" alt="icon">
+          <img class="icon-tecnologia"
+               [src]="element.icon ? 'assets/img-icons/' + element.icon : 'assets/img-icons/code.svg'" alt="icon">
         </td>
       </ng-container>
 
@@ -51,16 +52,16 @@
     </table>
   </ng-container>
   <div class="btn-votacao">
-    <div [matTooltip]="!user ? 'Faça Login ou Cadastro para realizar essa ação' : ''" >
-    <button [disabled]="!user" mat-raised-button (click)="votacao(id)">Participar da votação</button>
+    <div [matTooltip]="!user ? 'Faça Login ou Cadastro para realizar essa ação' : ''">
+      <button [disabled]="!user" mat-raised-button (click)="votacao(id)">Participar da votação</button>
     </div>
-    </div>
+  </div>
   <div class="comentarios">
     <div class="row-totalizadores">
-      <span>Comentários totais: 50</span>
-      <span>Comentários comuns: 14</span>
-      <span>Comentários positivos: 20</span>
-      <span>Comentários negativos: 16</span>
+      <span>Comentários Totais: {{listComentarios.length}}</span>
+      <span>Comentários Comuns: {{qtdComentariosComuns}}</span>
+      <span>Comentários Positivos: {{qtdComentariosPositivos}}</span>
+      <span>Comentários Negativos: {{qtdComentariosNegativos}}</span>
     </div>
     <div class="card-comentarios">
       <div class="btn-comentario" [matTooltip]="!user ? 'Faça Login ou Cadastro para realizar essa ação' : ''">
@@ -96,79 +97,36 @@
             <div class="col-md-10">
               <div class="form-group">
                 <label for="comentario">Comentário</label>
-                <textarea class="form-control" id="comentario" rows="3" formControlName="comentario"></textarea>
+                <textarea class="form-control" id="comentario" rows="5" formControlName="comentario" maxlength="4000"></textarea>
               </div>
             </div>
           </div>
           <div class="btns-actions">
-            <button (click)="cancelarComentario()" class="btn-cancelar" mat-raised-button >Cancelar</button>
-              <button class="btn-comentar" (click)="salvarComentario()" mat-raised-button>Salvar comentário</button>
+            <button (click)="cancelarComentario()" class="btn-cancelar" mat-raised-button>Cancelar</button>
+            <button class="btn-comentar" (click)="salvarComentario()" mat-raised-button>Salvar comentário</button>
           </div>
         </form>
       </div>
-      <div class="comentario">
-        <div class="info-ususario">
-          <span>João Silva</span>
-          <span>Tecnologia: Linguagem A</span>
-          <span>Tipo de comentário: positivo</span>
-          <span>Data: 29/05/2024</span>
+      <ng-container *ngFor="let comentario of listComentarios">
+        <div class="comentario">
+          <div class="info-ususario">
+            <span style="margin-bottom: 4px">{{ comentario.usuario.apelido }}</span>
+            <span style="margin-bottom: 4px; color: #0080ff">@{{ comentario.usuario.username }}</span>
+            <span style="margin-bottom: 4px">Comentário {{ comentario.tipoDeComentario }}</span>
+            <span *ngIf="comentario.tecnologias" style="margin-bottom: 4px">Tecnologia: {{ comentario.tecnologias.nome }}</span>
+            <span>Data: {{ comentario.dataCriacao | date: 'dd/MM/yyyy HH:mm' }}</span>
+          </div>
+          <div class="texto-do-comentario">
+            <pre>{{ comentario.comentario }}</pre>
+          </div>
         </div>
-        <div class="texto-do-comentario">
-          <span>
-            Lorem ipsum dolor sit amet. Est facilis iste et esse numquam eum fugit enim ut saepe quod sed nihil velit! Est molestiae voluptas ut fugit quis est illo eveniet qui temporibus ullam nam quaerat voluptatem et rerum dolore nam officiis fugit. Sed beatae illum ut deleniti excepturi et magnam quibusdam et odit quidem ex itaque dolor ut quos sint hic maiores accusantium.
-            <br><br>
-            Ex odit vero sit laborum expedita non unde voluptatem quo omnis consequuntur in quaerat aliquid. Et velit nostrum vel expedita voluptate id repellat molestiae qui quibusdam laudantium ut quasi dolores sit facilis distinctio? At dolor similique aut dolor autem nam quisquam perferendis ut debitis voluptatum. Sed necessitatibus facilis quo laboriosam temporibus hic voluptatum sint ea sunt consequatur in esse recusandae.
-          </span>
-        </div>
-      </div>
-      <hr>
-      <div class="comentario">
-        <div class="info-ususario">
-          <span>Mateus Souza</span>
-          <span>Tipo de comentário: comum</span>
-          <span>Data: 29/05/2024</span>
-        </div>
-        <div class="texto-do-comentario">
-          <span>
-            Lorem ipsum dolor sit amet. Est facilis iste et esse numquam eum fugit enim ut saepe quod sed nihil velit! Est molestiae voluptas ut fugit quis est illo eveniet qui temporibus ullam nam quaerat voluptatem et rerum dolore nam officiis fugit. Sed beatae illum ut deleniti excepturi et magnam quibusdam et odit quidem ex itaque dolor ut quos sint hic maiores accusantium.
-            <br><br>
-            Ex odit vero sit laborum expedita non unde voluptatem quo omnis consequuntur in quaerat aliquid. Et velit nostrum vel expedita voluptate id repellat molestiae qui quibusdam laudantium ut quasi dolores sit facilis distinctio? At dolor similique aut dolor autem nam quisquam perferendis ut debitis voluptatum. Sed necessitatibus facilis quo laboriosam temporibus hic voluptatum sint ea sunt consequatur in esse recusandae.
-          </span>
-        </div>
-      </div>
-      <hr>
-      <div class="comentario">
-        <div class="info-ususario">
-          <span>Ana Pereira</span>
-          <span>Tecnologia: Linguagem C</span>
-          <span>Tipo de comentário: negativo</span>
-          <span>Data: 29/05/2024</span>
-        </div>
-        <div class="texto-do-comentario">
-          <span>
-            Lorem ipsum dolor sit amet. Est facilis iste et esse numquam eum fugit enim ut saepe quod sed nihil velit! Est molestiae voluptas ut fugit quis est illo eveniet qui temporibus ullam nam quaerat voluptatem et rerum dolore nam officiis fugit. Sed beatae illum ut deleniti excepturi et magnam quibusdam et odit quidem ex itaque dolor ut quos sint hic maiores accusantium.
-            <br><br>
-            Ex odit vero sit laborum expedita non unde voluptatem quo omnis consequuntur in quaerat aliquid. Et velit nostrum vel expedita voluptate id repellat molestiae qui quibusdam laudantium ut quasi dolores sit facilis distinctio? At dolor similique aut dolor autem nam quisquam perferendis ut debitis voluptatum. Sed necessitatibus facilis quo laboriosam temporibus hic voluptatum sint ea sunt consequatur in esse recusandae.
-          </span>
-        </div>
-      </div>
-      <hr>
-      <div class="comentario">
-        <div class="info-ususario">
-          <span>Márcio Nunes</span>
-          <span>Tecnologia: Linguagem D</span>
-          <span>Tipo de comentário: negativo</span>
-          <span>Data: 29/05/2024</span>
-        </div>
-        <div class="texto-do-comentario">
-          <span>
-            Lorem ipsum dolor sit amet. Est facilis iste et esse numquam eum fugit enim ut saepe quod sed nihil velit! Est molestiae voluptas ut fugit quis est illo eveniet qui temporibus ullam nam quaerat voluptatem et rerum dolore nam officiis fugit. Sed beatae illum ut deleniti excepturi et magnam quibusdam et odit quidem ex itaque dolor ut quos sint hic maiores accusantium.
-            <br><br>
-            Ex odit vero sit laborum expedita non unde voluptatem quo omnis consequuntur in quaerat aliquid. Et velit nostrum vel expedita voluptate id repellat molestiae qui quibusdam laudantium ut quasi dolores sit facilis distinctio? At dolor similique aut dolor autem nam quisquam perferendis ut debitis voluptatum. Sed necessitatibus facilis quo laboriosam temporibus hic voluptatum sint ea sunt consequatur in esse recusandae.
-          </span>
-        </div>
+        <hr>
+      </ng-container>
+      <div *ngIf="listComentarios.length < 1" class="centralizar">
+        <span>Nenhum comentário foi adicionado nesse tópico/ranking.</span>
       </div>
     </div>
   </div>
+
 </div>
 

@@ -79,6 +79,8 @@ table {
   background-color: white;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   border-radius: 7px;
+  margin-bottom: 70px;
+  padding-bottom: 20px;
 }
 
 .btn-comentario {
@@ -104,13 +106,13 @@ table {
 .comentario {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 12px 12px 12px 12px;
 }
 
 .info-ususario {
-  background-color: #1f1f1f;
+  background-color: black;
   color: white;
   height: 100%;
   width: 20%;
@@ -125,6 +127,15 @@ table {
 .texto-do-comentario {
   width: 80%;
   padding-left: 16px;
+  padding-right: 16px;
+}
+
+.texto-do-comentario pre {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  white-space: pre-wrap; /* Permite quebras de linha */
+  word-wrap: break-word; /* Quebra palavras longas */
+  overflow-wrap: break-word; /* Alternativa para quebra */
 }
 
 .icon-tecnologia {

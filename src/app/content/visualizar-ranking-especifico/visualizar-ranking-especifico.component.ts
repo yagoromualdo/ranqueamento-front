@@ -11,6 +11,7 @@ import {TecnologiasService} from "../../services/tecnologias-service";
 import {MensagemPadraoComponent} from "../../utils/mensagens/mensagem-padrao/mensagem-padrao.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ComentarioService} from "../../services/comentario-service";
+import {ComentarioModel} from "../models/comentario.model";
 
 export interface PeriodicElement {
   posicao: number;
@@ -51,6 +52,10 @@ export class VisualizarRankingEspecificoComponent implements OnInit {
   formComentario!: FormGroup;
   listTecnologias: TecnologiasModel[] = [];
   adicionandoComentario = false;
+  listComentarios: ComentarioModel[] = [];
+  qtdComentariosComuns = 0;
+  qtdComentariosPositivos = 0;
+  qtdComentariosNegativos = 0;
 
   constructor(
     private topicoService: TopicoService,
@@ -91,6 +96,15 @@ export class VisualizarRankingEspecificoComponent implements OnInit {
             this.listTecnologias = tec;
           });
         }
+      });
+      this.comentarioService.listarPorTopico(this.id).subscribe(comentarios => {
+        this.listComentarios = comentarios;
+        const comuns = comentarios.filter(c => c.tipoDeComentario == 'Comum');
+        const positivos = comentarios.filter(c => c.tipoDeComentario == 'Positivo');
+        const negativos = comentarios.filter(c => c.tipoDeComentario == 'Negativo');
+        this.qtdComentariosComuns = comuns.length;
+        this.qtdComentariosPositivos = positivos.length;
+        this.qtdComentariosNegativos = negativos.length;
       });
     }
   }
@@ -139,6 +153,15 @@ export class VisualizarRankingEspecificoComponent implements OnInit {
       this.comentarioService.salvarComentario(comentarioParaSalvar).subscribe(res => {
         if(res) {
           this.adicionandoComentario = false;
+          this.listComentarios.push(res);
+          if(res.tipoDeComentario == 'Comum') {
+            this.qtdComentariosComuns++;
+          } else if(res.tipoDeComentario == 'Positivo') {
+            this.qtdComentariosPositivos++;
+          } else if(res.tipoDeComentario == 'Negativo') {
+            this.qtdComentariosNegativos++;
+          }
+          this.resetarForm();
           const dialogRef = this.dialog.open(MensagemPadraoComponent, {
             data: {message: 'Comentário salvo com sucesso!', tipo: 'sucesso'},
             position: {bottom: '0px'},
@@ -161,7 +184,7 @@ export class VisualizarRankingEspecificoComponent implements OnInit {
 
       setTimeout(() => {
         dialogRef.close();
-      }, 3000);
+      }, 3500);
     } else {
       const dialogRef = this.dialog.open(MensagemPadraoComponent, {
         data: {message: 'Preencha todos os campos corretamente', tipo: 'alerta'},
@@ -173,6 +196,13 @@ export class VisualizarRankingEspecificoComponent implements OnInit {
         dialogRef.close();
       }, 3000);
     }
-    this.formComentario.get('tipoDeComentario')?.value;
+  }
+
+  resetarForm() {
+    this.formComentario.setValue({
+      tipoDeComentario: 'Comum',
+      comentario: '',
+      tecnologia: ''
+    });
   }
 }
